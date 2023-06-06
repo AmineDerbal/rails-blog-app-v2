@@ -1,17 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-
   subject { Post.new(title: 'Title', text: 'Text', comments_counter: 0, likes_counters: 0) }
-  
+
   before { subject.save }
 
-  it 'title should be present' do 
+  it 'title should be present' do
     subject.title = nil
     expect(subject).to_not be_valid
   end
 
-  it 'text should be present' do 
+  it 'text should be present' do
     subject.text = nil
     expect(subject).to_not be_valid
   end
@@ -39,14 +38,14 @@ RSpec.describe Post, type: :model do
   describe '#update_user_posts_counter' do
     let(:user) { User.create(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.', posts_counter: 0) }
     let!(:post) { user.posts.create(title: 'Post 1', text: 'This is post 1', comments_counter: 0, likes_counters: 0) }
- 
+
     it 'user_counter' do
       user.increment!(:posts_counter)
       expect(user.posts_counter).to eq(1)
     end
-   end
+  end
 
-   describe '#recent_comments' do
+  describe '#recent_comments' do
     let(:user) { User.create(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.', posts_counter: 0) }
     let!(:post) { user.posts.create(title: 'Post 1', text: 'This is post 1', comments_counter: 0, likes_counters: 0) }
     let!(:comment1) { post.comments.create(text: 'Comment 1', author_id: user.id) }
@@ -55,21 +54,17 @@ RSpec.describe Post, type: :model do
     let!(:comment4) { post.comments.create(text: 'Comment 4', author_id: user.id) }
     let!(:comment5) { post.comments.create(text: 'Comment 5', author_id: user.id) }
     let!(:comment6) { post.comments.create(text: 'Comment 6', author_id: user.id) }
-  
-     it 'returns the most recent 3 comments' do
-       recent_comments = post.recent_comments
-       expect(recent_comments.length).to eq(3)
-       expect(recent_comments).to contain_exactly(comment6, comment5, comment4)
-     end
-  
-     it 'returns an empty array if the post has no comments' do
-       post.comments.destroy_all
-       recent_comments = post.recent_comments
-       expect(recent_comments).to be_empty
-     end
-  
+
+    it 'returns the most recent 3 comments' do
+      recent_comments = post.recent_comments
+      expect(recent_comments.length).to eq(3)
+      expect(recent_comments).to contain_exactly(comment6, comment5, comment4)
     end
 
-
-
+    it 'returns an empty array if the post has no comments' do
+      post.comments.destroy_all
+      recent_comments = post.recent_comments
+      expect(recent_comments).to be_empty
+    end
   end
+end
