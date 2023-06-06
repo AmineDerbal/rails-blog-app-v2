@@ -23,13 +23,10 @@ RSpec.describe Like, type: :model do
   end
 
   describe '#update_post_likes_counter' do
-    let(:user) { User.create(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.', posts_counter: 0) }
-    let!(:post) { user.posts.create(title: 'Post 1', text: 'This is post 1', comments_counter: 0, likes_counters: 0) }
-    let!(:like) { post.likes.create(author_id: user.id) }
-
-    it 'user_counter' do
-      user.increment!(:posts_counter)
-      expect(user.posts_counter).to eq(1)
+    it 'like increment' do
+      expect(subject.post.likes_counters).to eq(1)
+      subject.update_post_likes_counter
+      expect(subject.post.likes_counters).to eq(2)
     end
   end
 end
