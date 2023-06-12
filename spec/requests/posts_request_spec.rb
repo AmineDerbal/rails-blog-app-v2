@@ -8,7 +8,6 @@ RSpec.describe 'Posts', type: :request do
       expect(response.status).to eq(200)
       expect(response).to render_template('index')
       expect(response.body).to include('list of all posts and comment of a user')
-
     end
   end
 
@@ -21,4 +20,4 @@ RSpec.describe 'Posts', type: :request do
       expect(response.body).to include('details of a post')
     end
   end
-  end
+end
