@@ -3,18 +3,11 @@
  <div class = 'posts-content'>
      <% @posts.each do |post|%>
      <div class = 'user-post'>
-     <div class = 'post-content'> 
-     <li><h4>   <%= link_to post.title, user_post_path(user_id: @user.id, id: post.id) %>
-    </h4></li>
-     <p> <%= post.text%> </p>
-     <p class = 'counters'> Comments: <%= post.comments_counter.to_i > 0 ? post.comments_counter : '0'  %> Likes : <%= post.likes_counters.to_i > 0 ? post.likes_counters : '0'%>  </p>
-     </div>
-     <div class='comments-content'>
-     <p><strong> Comments :</strong> </p>
-     <% post.comments.each do |comment|%>
-      <p> <%= comment.text%> </p>
-     <%end%>
-     </div>
+    <%= render partial: 'post', locals: { post: post } %>
+    <%= render partial: 'comment', locals: { post: post } %>
+   
      </div>
      <%end%>
+
+     <button>pagination</button>
    </div>
