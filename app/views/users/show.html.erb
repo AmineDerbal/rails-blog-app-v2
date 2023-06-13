@@ -13,13 +13,15 @@
  <p> <%= @user.bio %> </p>
   </div>
   <div class = 'posts-content'>
-     <% @posts.each do |post|%>
+     <% @recent_posts.each do |post|%>
      <div class = 'post-content'> 
-     <li><h4>   <%= link_to post.title, user_posts_path(@user) %>
+     <li><h4>   <%= post.title %>
     </h4></li>
      <p> <%= post.text%> </p>
      <p class = 'counters'> Comments: <%= post.comments_counter.to_i > 0 ? post.comments_counter : '0'  %> Likes : <%= post.likes_counters.to_i > 0 ? post.likes_counters : '0'%>  </p>
      </div>
      <%end%>
    </div>
+
+   <button> <%= link_to 'See all posts', user_posts_path(@user) %> </button>
 <div>
