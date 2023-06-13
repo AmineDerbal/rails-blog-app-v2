@@ -3,13 +3,7 @@
 <div class = 'user-content'> 
 
 <% @users.each do |user|%>
-<div class = 'user'>
-<div class = "image-placeholder"></div>
-<div class = 'user-block'>
-  <li><h3><%= link_to user.name, user_path(user) %></h3></li>
-   <p > Number of posts: <%= user.posts.count%> </p>
- </div>
-</div>
+<%= render partial: 'user', locals: { user: user } %>
 
 
 <%end%>
