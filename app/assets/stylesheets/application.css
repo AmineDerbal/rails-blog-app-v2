@@ -13,3 +13,102 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+  font-family: Helvetica, Geneva, Arial, sans-serif;
+  font-size: small;
+  color: #000;
+  background-color: #fff;
+}
+
+h1,
+h2 {
+  text-align: center;
+}
+
+a:link,
+a:active,
+a:visited {
+  color: #cd0000;
+  text-decoration: none;
+  font-size: 2rem;
+}
+
+.user-content,
+.user,
+.posts-content,
+.user-post,
+.post {
+  display: flex;
+}
+
+.user-content,
+.posts-content,
+.user-post {
+  flex-direction: column;
+}
+
+.user-content {
+  width: 95%;
+}
+
+.user,
+.user-content {
+  gap: 2rem;
+}
+
+.user-bio,
+.user-block,
+.image-placeholder {
+  border: #000 solid 1px;
+}
+
+.user-bio {
+  width: 90%;
+  padding: 0 1rem;
+}
+
+.user-block {
+  padding: 0 1rem;
+  width: 80%;
+}
+
+.user-block li,
+.post-content li {
+  list-style: none;
+}
+
+.user-block p,
+.counters {
+  text-align: right;
+}
+
+.image-placeholder {
+  width: 7%;
+}
+
+.posts-content {
+  gap: 1rem;
+}
+
+.post-content,
+.comments-content {
+  width: 90%;
+  border: #000 solid 1px;
+  padding: 0 1rem;
+}
+
+.user-post {
+  gap: 0.2rem;
+}
+
+.post {
+  width: 100%;
+  justify-content: space-between;
+}
+
+button {
+  width: fit-content;
+  align-self: center;
+  padding: 0.5rem;
+}

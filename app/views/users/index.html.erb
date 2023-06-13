@@ -1,1 +1,12 @@
-<p>The list of users</p>
+<h2>The list of users</h2>
+
+<div class = 'user-content'> 
+
+<% @users.each do |user|%>
+<%= render partial: 'user', locals: { user: user } %>
+
+
+<%end%>
+
+
+</div>
