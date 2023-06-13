@@ -1,1 +1,14 @@
-<p> details of a post </p>
+<h2> details of a post </h2>
+<div class = 'user-post'>
+     <div class = 'post-content'> 
+   <p class = 'post'>  <strong> <%= @post.title %> </strong>      <span class = 'counters'> Comments: <%= @post.comments_counter.to_i > 0 ? @post.comments_counter : '0'  %> Likes : <%= @post.likes_counters.to_i > 0 ? @post.likes_counters : '0'%>  </span> 
+    </p>
+     <p> <%= @post.text%> </p>
+     </div>
+     <div class='comments-content'>
+     <p><strong> Comments :</strong> </p>
+     <% @comments.each do |comment|%>
+      <p> <%= comment.text%> </p>
+     <%end%>
+     </div>
+     </div>
