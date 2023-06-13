@@ -1,6 +1,1 @@
-  <div class='comments-content'>
-     <p><strong> Comments :</strong> </p>
-     <% post.recent_comments.each do |comment|%>
       <p> <strong><%= comment.author.name%> :</strong> <%= comment.text%> </p>
-     <%end%>
-     </div>

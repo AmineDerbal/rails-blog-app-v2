@@ -5,5 +5,10 @@
     </p>
      <p> <%= @post.text%> </p>
      </div>
-    <%= render partial: 'comment', locals: { post: @post } %>
+     <div class='comments-content'>
+     <p><strong> Comments :</strong> </p>
+     <% @post.comments.each do |comment|%>
+      <%= render partial: 'comment', locals: { comment: comment } %>
+     <%end%>
+     </div>
      </div>

@@ -4,7 +4,12 @@
      <% @posts.each do |post|%>
      <div class = 'user-post'>
     <%= render partial: 'post', locals: { post: post } %>
-    <%= render partial: 'comment', locals: { post: post } %>
+     <div class='comments-content'>
+     <p><strong> Comments :</strong> </p>
+     <% post.recent_comments.each do |comment|%>
+       <%= render partial: 'comment', locals: { comment: comment } %>
+     <%end%>
+     </div>
    
      </div>
      <%end%>
