@@ -16,32 +16,29 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-  def like 
+  def like
     @post = Post.find(params[:id])
-   @like = Like.new(author_id: params[:user_id],post_id: @post.id)
-   @like.save
-   redirect_to user_post_path
-
-
+    @like = Like.new(author_id: params[:user_id], post_id: @post.id)
+    @like.save
+    redirect_to user_post_path
   end
 
-  def create 
+  def create
     @post = Post.new(post_params)
     @post.author_id = params[:user_id]
     @post.comments_counter = 0
     @post.likes_counters = 0
-       
+
     if @post.save
       redirect_to user_posts_path, notice: 'Post created successfully'
     else
       render 'new'
     end
   end
+
   private
 
   def post_params
     params.require(:post).permit(:title, :text)
   end
-
-
 end
