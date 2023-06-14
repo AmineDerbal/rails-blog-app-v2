@@ -16,6 +16,15 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
+  def like 
+    @post = Post.find(params[:id])
+   @like = Like.new(author_id: params[:user_id],post_id: @post.id)
+   @like.save
+   redirect_to user_post_path
+
+
+  end
+
   def create 
     @post = Post.new(post_params)
     @post.author_id = params[:user_id]
@@ -27,8 +36,6 @@ class PostsController < ApplicationController
     else
       render 'new'
     end
-
-   
   end
   private
 
