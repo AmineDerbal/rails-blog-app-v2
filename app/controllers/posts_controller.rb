@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  layout 'standard'
+
   def index
     @user = User.find(params[:user_id])
     @posts = @user.posts
@@ -7,6 +9,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @current_user = current_user
   end
 
   def new
