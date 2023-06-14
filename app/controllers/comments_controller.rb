@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
-    @author_id = params[:user_id]
+    @author_id = current_user.id
     @post_id = params[:post_id]
     @comment.author_id = @author_id
     @comment.post_id = @post_id

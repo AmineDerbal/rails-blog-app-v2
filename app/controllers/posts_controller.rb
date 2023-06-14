@@ -25,7 +25,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.author_id = params[:user_id]
+    @post.author_id = current_user.id
     @post.comments_counter = 0
     @post.likes_counters = 0
 
