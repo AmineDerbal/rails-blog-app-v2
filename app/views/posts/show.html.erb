@@ -12,3 +12,5 @@
      <%end%>
      </div>
      </div>
+
+     <button> <%= link_to 'Add Comment', new_user_post_comment_path(user_id: @current_user.id, post_id: @post.id) %> </button>
