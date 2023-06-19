@@ -1,7 +1,7 @@
 <h2> details of a post </h2>
 <div class = 'user-post'>
      <div class = 'post-content'> 
-   <p class = 'post'>  <strong> <%= @post.title %> </strong>      <span class = 'counters'> Comments: <%= @post.comments_counter.to_i > 0 ? @post.comments_counter : '0'  %> Likes : <%= @post.likes_counters.to_i > 0 ? @post.likes_counters : '0'%>  </span> 
+   <p class = 'post'>  <strong> <%= @post.title %> </strong>      <span class = 'counters'> Comments: <%= @post.comments_counter.to_i > 0 ? @post.comments_counter : '0'  %> Likes: <%= @post.likes_counters.to_i > 0 ? @post.likes_counters : '0'%>  </span> 
     </p>
      <p> <%= @post.text%> </p>
      <div> <%= form_with(model: @post, url: like_user_post_path(@post), method: :post, local: true) do |form| %>

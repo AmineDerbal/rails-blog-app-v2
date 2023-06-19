@@ -1,19 +1,28 @@
 <h2> list of all posts and comment of a user </h2>
 
- <div class = 'posts-content'>
-     <% @posts.each do |post|%>
-     <div class = 'user-post'>
-    <%= render partial: 'post', locals: { post: post } %>
-     <div class='comments-content'>
-     <p><strong> Comments :</strong> </p>
-     <% post.recent_comments.each do |comment|%>
-       <%= render partial: 'comment', locals: { comment: comment } %>
-     <%end%>
-     </div>
-   
-     </div>
-     <%end%>
+<div class = 'user-content'> 
+<div class = 'user'>
+<div class = "image-placeholder"><img src="<%= @user.photo %>" alt="Profile Picture"></div>
 
-     <button><%= link_to 'Add new Post', new_user_post_path(@current_user)%></button>
+<div class = 'user-block'>
+ <h3><%= @user.name %></h3>
+   <p > Number of posts: <%= @user.posts.count%> </p>
+ </div>
+ </div>
 
-   </div>
+<div class='posts-content'>
+  <button><%= link_to 'Add new Post', new_user_post_path(@current_user) %></button>
+  <% @posts.each do |post| %>
+    <div class='user-post'>
+      <%= render partial: 'post', locals: { post: post } %>
+      <div class='comments-content'>
+        <p><strong>Comments:</strong></p>
+        <% post.comments.each do |comment| %>
+          <%= render partial: 'comment', locals: { comment: comment } %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<button>Pagination</button>
