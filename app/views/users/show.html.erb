@@ -2,7 +2,8 @@
 
 <div class = 'user-content'> 
 <div class = 'user'>
-<div class = "image-placeholder"></div>
+<div class = "image-placeholder"><img src="<%= @user.photo %>" alt="Profile Picture"></div>
+
 <div class = 'user-block'>
  <h3><%= @user.name %></h3>
    <p > Number of posts: <%= @user.posts.count%> </p>
@@ -13,13 +14,8 @@
  <p> <%= @user.bio %> </p>
   </div>
   <div class = 'posts-content'>
-     <% @recent_posts.each do |post|%>
-     <div class = 'post-content'> 
-     <li><h4>   <%= post.title %>
-    </h4></li>
-     <p> <%= post.text%> </p>
-     <p class = 'counters'> Comments: <%= post.comments_counter.to_i > 0 ? post.comments_counter : '0'  %> Likes : <%= post.likes_counters.to_i > 0 ? post.likes_counters : '0'%>  </p>
-     </div>
+     <% @first_three_posts.each do |post|%>
+   <%= render partial: 'posts/post', locals: { post: post } %>
      <%end%>
    </div>
 

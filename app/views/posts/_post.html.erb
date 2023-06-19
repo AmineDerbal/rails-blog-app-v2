@@ -2,5 +2,5 @@
      <li><h4>   <%= link_to post.title, user_post_path(user_id: @user.id, id: post.id) %>
     </h4></li>
      <p> <%= post.text%> </p>
-     <p class = 'counters'> Comments: <%= post.comments_counter.to_i > 0 ? post.comments_counter : '0'  %> Likes : <%= post.likes_counters.to_i > 0 ? post.likes_counters : '0'%>  </p>
+     <p class = 'counters'> Comments: <%= post.comments_counter.to_i > 0 ? post.comments_counter : '0'  %> Likes: <%= post.likes_counters.to_i > 0 ? post.likes_counters : '0'%>  </p>
      </div>

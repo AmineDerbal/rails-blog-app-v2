@@ -2,7 +2,8 @@
 
 <div class = 'user-content'> 
 <div class = 'user'>
-<div class = "image-placeholder"><img src="<%= @user.photo %>"/></div>
+<div class = "image-placeholder"><img src="<%= @user.photo %>" alt="Profile Picture"></div>
+
 <div class = 'user-block'>
  <h3><%= @user.name %></h3>
    <p > Number of posts: <%= @user.posts.count%> </p>
@@ -10,6 +11,7 @@
  </div>
 
 <div class='posts-content'>
+  <button><%= link_to 'Add new Post', new_user_post_path(@current_user) %></button>
   <% @posts.each do |post| %>
     <div class='user-post'>
       <%= render partial: 'post', locals: { post: post } %>
@@ -21,6 +23,6 @@
       </div>
     </div>
   <% end %>
-
-  <button><%= link_to 'Add new Post', new_user_post_path(@current_user) %></button>
 </div>
+
+<button>Pagination</button>
