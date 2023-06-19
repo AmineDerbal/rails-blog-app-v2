@@ -50,10 +50,8 @@ class PostsTest < ApplicationSystemTestCase
   end
 
   test 'visiting the show page' do
-    user = User.first
+    user = users(:one)
     post = user.posts.first
-    post ||= Post.create(title: 'Sample Post', text: 'Sample body', author_id: user.id, comments_counter: 0,
-                         likes_counters: 0)
     visit user_post_url(user, post)
 
     # Expectation: I can see the post title.
@@ -68,12 +66,14 @@ class PostsTest < ApplicationSystemTestCase
     # Expectation: I can see how many likes it has
     assert_text "Likes: #{post.likes.count}"
 
-    # Expectation: I can see the username of each commentor.
+    # Expectation: I can see the post body.
+    assert_text post.text
+
     post.comments.each do |comment|
+      # Expectation: I can see the username of each commentor.
       assert_text comment.author.name
+      # Expectation: I can see the comment each commentor left.
       assert_text comment.text
     end
-
-    # Expectation: I can see the comment each commentor left.
   end
 end
