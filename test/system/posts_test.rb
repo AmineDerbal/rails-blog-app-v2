@@ -2,7 +2,7 @@ require 'application_system_test_case'
 
 class PostsTest < ApplicationSystemTestCase
   test 'visiting the index' do
-    user = User.first
+    user = users(:one)
     visit user_posts_url(user)
 
     # Expectation: I can see the profile picture for each user.
@@ -32,16 +32,20 @@ class PostsTest < ApplicationSystemTestCase
     assert_selector 'button', text: 'Pagination'
 
     # Expectation: When I click on a post, it redirects me to that post's show page
+    posts_links = []
     all('.post-content').each do |post|
       within post do
         post_link = find('a')
         post_link_text = post_link.text
-        post_link['href']
-
-        click_link post_link_text
+        post_link_href = post_link['href']
+        posts_links << { href: post_link_href, text: post_link_text }
       end
-      assert_current_path post_link_href
+    end
+    posts_links.each do |post_link|
+      click_link(post_link[:text])
       # Assert the resulting page or URL
+      assert_current_path post_link[:href]
+      visit user_posts_url(user)
     end
   end
 
@@ -57,7 +61,6 @@ class PostsTest < ApplicationSystemTestCase
 
     # Expectation: I can see who wrote the post.
     assert_text(/#{post.author.name}/)
-
 
     # Expectation: I can see how many comments it has
     assert_text "Comments: #{post.comments.count}"

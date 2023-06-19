@@ -3,7 +3,6 @@ require 'application_system_test_case'
 class UsersTest < ApplicationSystemTestCase
   test 'visiting the index' do
     visit users_url
-
     assert_selector 'h2', text: 'The list of users'
 
     User.all.each do |user|
@@ -14,7 +13,6 @@ class UsersTest < ApplicationSystemTestCase
       # Expectation: I can see the number of posts each user has written.
       assert_text "Number of posts: #{user.posts.count}"
     end
-
 
     # Expectation: when I click on a user, I am redirected to that user.
     all('.user-block').each do |user_block|
@@ -32,20 +30,20 @@ class UsersTest < ApplicationSystemTestCase
   end
 
   test 'visiting the show page' do
-    user = User.first
+    user = users(:one)
     visit user_url(user)
 
     # Expectation: I can see the profile picture for each user.
     assert_selector "img[src='#{user.photo}']"
 
     # Expectation: I can see the username of the user.
-    assert_selector 'a', text: user.name
+    assert_selector 'h3', text: user.name
 
     # Expectation: I can see the number of posts of the user.
     assert_text "Number of posts: #{user.posts.count}"
 
     # Expectation: I can see the bio of the user
-    assert_text 'p', exact: user.bio
+    assert_selector 'p', text: user.bio
 
     # Expectation: I can see the user's 3 first posts.
     user.posts.limit(3).each do |post|
@@ -56,16 +54,20 @@ class UsersTest < ApplicationSystemTestCase
     assert_selector 'button', text: 'See all posts'
 
     # Expectation: when I click on a post, I am redirected to that post.
+    posts_links = []
     all('.post-content').each do |post|
       within post do
         post_link = find('a')
         post_link_text = post_link.text
-        post_link['href']
+        post_link_href = post_link['href']
 
-        click_link post_link_text
+        posts_links << { href: post_link_href, text: post_link_text }
       end
-      # Assert the resulting page or URL
-      assert_current_path post_link_href
+    end
+    posts_links.each do |post_link|
+      click_link(post_link[:text])
+      assert_current_path post_link[:href]
+      visit user_url(user)
     end
 
     # Expectation: when I click on the button, I am redirected to the user's posts.
