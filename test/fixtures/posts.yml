@@ -4,8 +4,31 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
+one: {
+  id: 1,  # primary key
+  title: 'Sample Post',
+  text: 'Sample body',
+  author_id: 1,
+  comments_counter: 3,
+  likes_counters: 5
+}
 # column: value
 #
-two: {}
+two: {
+  id: 2,
+  title: 'Another Post',
+  text: 'Another body',
+  author_id: 1,
+  comments_counter: 2,
+  likes_counters: 4
+}
+
+three: {
+  id: 3,
+  title: 'Yet Another Post',
+  text: 'Yet another body',
+  author_id: 1,
+  comments_counter: 1,
+  likes_counters: 2
+}
 # column: value
