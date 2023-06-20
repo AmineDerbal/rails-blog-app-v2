@@ -4,18 +4,16 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
  <div class="field">
-  <%= f.label :name %><br />
-  <%= f.text_field :name, autofocus: true %>
+  <%= f.hidden_field :name, value: 'UNKNOWN' %>
 </div>
 
 <div class="field">
-  <%= f.label :photo %><br />
-  <%= f.text_field :photo %>
+  <%= f.hidden_field :photo, value: 'UNKNOWN' %>
 </div>
 
 <div class="field">
-  <%= f.label :bio %><br />
-  <%= f.text_area :bio %>
+  <%= f.hidden_field :bio, value: 'UNKNOWN' %>
+
 </div>
 
 <div class="field">
