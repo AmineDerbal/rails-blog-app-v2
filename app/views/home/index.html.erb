@@ -1,0 +1,18 @@
+<h1>Welcome to My App</h1>
+
+<% if user_signed_in? %>
+<!-- User is authenticated -->
+  <p>You are logged in as <%= current_user.name %>.</p>
+  <!-- Add more content for authenticated users -->
+  <div><%= link_to 'Go List of users', users_path %> </div>
+ <div> <%= link_to 'Go to Profile', user_path(current_user) %></div>
+
+<% else %>
+<!-- User is not authenticated -->
+  <p>You are not logged in.</p>
+  <p>Only authenticated users can see the content of this page.</p>
+  <p>Click here to <%= link_to 'Login', custom_login_path %>.</p>
+  <p>Click here to <%= link_to 'Register', custom_registration_path %>.</p>
+  <!-- Add more content for non-authenticated users -->
+
+<% end %>
