@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     @user = current_user
     @users = User.all
   end
-  
+
   def show
     if params[:id] == 'sign_out'
       sign_out(current_user)
@@ -18,4 +18,3 @@ class UsersController < ApplicationController
     end
   end
 end
-

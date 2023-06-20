@@ -19,7 +19,6 @@ class PostsController < ApplicationController
   end
 
   def like
-    all_parameters = params.to_unsafe_h
     @post = Post.find(params[:id])
     @user = current_user
     @like = Like.new(author_id: current_user.id, post_id: @post.id)
