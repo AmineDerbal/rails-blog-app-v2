@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   layout 'standard'
+  before_action :authenticate_user!
 
   def index
     @user = User.find(params[:user_id])
@@ -9,6 +10,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @user = User.find(params[:user_id])
     @current_user = current_user
   end
 
@@ -18,9 +20,11 @@ class PostsController < ApplicationController
 
   def like
     @post = Post.find(params[:id])
-    @like = Like.new(author_id: params[:user_id], post_id: @post.id)
+    @user = current_user
+    @like = Like.new(author_id: current_user.id, post_id: @post.id)
+    @user_id = params[:user_id]
     @like.save
-    redirect_to user_post_path
+    redirect_to user_post_path(user_id: @user_id, id: params[:id])
   end
 
   def create
