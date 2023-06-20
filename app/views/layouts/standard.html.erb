@@ -14,6 +14,10 @@
          
          <div id = "header">
             <h1>Blog powered by Ruby on Rails</h1>
+            <% if user_signed_in? %>
+  <a href="<%= destroy_user_session_path %>" data-method="delete">Sign Out</a>
+  
+<% end %>
          </div>
 
          <div id = "content">
