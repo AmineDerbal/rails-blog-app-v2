@@ -19,6 +19,7 @@
   - [🔭 Future Features ](#-future-features-)
   - [🤝 Contributing ](#-contributing-)
   - [⭐️ Show your support ](#️-show-your-support-)
+  - [🙏 Acknowledgements](#acknowledgements)
   - [📝 License ](#-license-)
 
 <!-- PROJECT DESCRIPTION -->
@@ -157,6 +158,12 @@ Feel free to check the [issues page](https://github.com/AmineDerbal/blog-app-rai
 ## ⭐️ Show your support <a name="support"></a>
 
 If you like this project and want to support me make cooler projects Give this project a Star.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🙏 Acknowledgments <a name="acknowledgements"></a>
+
+I would like to thank the Microverse team for their invaluable resources
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
