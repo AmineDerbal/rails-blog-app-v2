@@ -11,15 +11,11 @@ class Ability
     can :destroy, Comment, author_id: user.id
     can :destroy, Post, id: user.posts.pluck(:id) # Grant permission to destroy posts that belong to the user
 
-
-
     return unless user.admin?  # additional permissions for administrators
     can :read, Post
-    can :destroy, Post, author_id: user.id
-    can :destroy, Comment, author_id: user.id
-
-    return if user.role != 'admin'  # only administrators have the following permissions
     can :destroy, Post
     can :destroy, Comment
+
+  
   end
 end
