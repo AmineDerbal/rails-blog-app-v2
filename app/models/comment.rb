@@ -13,6 +13,5 @@ class Comment < ApplicationRecord
 
   def update_post_comments_counter_after_destroy
     post.decrement!(:comments_counter)
-end
-
+  end
 end

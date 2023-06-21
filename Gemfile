@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.2.2'
 
-# Use cancan for authorization 
+# Use cancan for authorization
 gem 'cancancan'
 
 gem 'rails-controller-testing'
