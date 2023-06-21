@@ -3,6 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.2.2'
 
+# Use cancan for authorization 
+gem 'cancancan'
+
 gem 'rails-controller-testing'
 
 gem 'rspec-rails', '~> 4.0.0.beta2'
