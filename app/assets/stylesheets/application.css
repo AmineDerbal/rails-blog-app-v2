@@ -103,7 +103,8 @@ a:visited {
   justify-content: space-between;
 }
 
-button {
+button,
+.submit {
   width: fit-content;
   align-self: center;
   padding: 0.5rem;
@@ -152,4 +153,25 @@ form input {
 .link a:visited {
   font-size: 1rem;
   margin: 0 auto;
+}
+
+.post_buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: row-reverse;
+}
+
+.post_buttons form {
+  width: fit-content;
+}
+
+.comment_content {
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.comment_content form {
+  width: fit-content;
 }
