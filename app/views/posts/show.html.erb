@@ -4,18 +4,29 @@
    <p class = 'post'>  <strong> <%= @post.title %> </strong>      <span class = 'counters'> Comments: <%= @post.comments_counter.to_i > 0 ? @post.comments_counter : '0'  %> Likes: <%= @post.likes_counters.to_i > 0 ? @post.likes_counters : '0'%>  </span> 
     </p>
      <p> <%= @post.text%> </p>
-     <div> <%= form_with(model: @post, url: like_user_post_path(user_id: @user.id, id: @post.id), method: :post, local: true) do |form| %>
+     <div class = 'post_buttons'> <%= form_with(model: @post, url: like_user_post_path(user_id: @user.id, id: @post.id), method: :post, local: true) do |form| %>
   <%= form.button type: :submit, class: 'like-button' do %>
     Add Like
   <% end %>
-<% end %> </div>
+<% end %> 
+ <% if can?(:destroy, @post) %>
+  <%= form_with(model: @post, method: :delete, url: user_post_path(user_id: @user.id, id: @post.id)) do |form| %>
+        <%= form.submit "Delete", class:"submit" %>
+      <% end %> 
+  <% end %></div>
+ 
      </div>
      <div class='comments-content'>
      <p><strong> Comments :</strong> </p>
      <% @post.comments.each do |comment|%>
+     <div class = 'comment_content'>
       <%= render partial: 'comment', locals: { comment: comment } %>
+     </div>
      <%end%>
      </div>
      </div>
 
      <button> <%= link_to 'Add Comment', new_user_post_comment_path(user_id: @current_user.id, post_id: @post.id) %> </button>
+     </div>
+
+     

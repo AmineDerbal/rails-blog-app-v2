@@ -1,1 +1,7 @@
-      <p> <strong><%= comment.author.name%> :</strong> <%= comment.text%> </p>
+      <p> <strong><%= comment.author.name%> :</strong> <%= comment.text%> 
+      <% if can?(:destroy, comment)%> 
+      <%= form_with(model: comment,method: :delete, url: user_post_comment_path(user_id: comment.author_id,post_id: comment.post_id, id: comment.id )) do |form|%>
+      <%= form.submit "Delete", class:'submit' %>
+      <%end%>
+      <% end %> 
+      </p>
