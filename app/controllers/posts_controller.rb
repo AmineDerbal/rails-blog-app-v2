@@ -27,6 +27,18 @@ class PostsController < ApplicationController
     redirect_to user_post_path(user_id: @user_id, id: params[:id])
   end
 
+  def destroy
+    @post = Post.find(params[:id])
+
+    # Destroy all comments
+    @post.comments.destroy_all if @post.comments.exists?
+    # Destroy all likes
+    @post.likes.destroy_all if @post.likes.exists?
+
+    @post.destroy
+    redirect_to user_posts_path(id: current_user.id)
+  end
+
   def create
     @post = Post.new(post_params)
     @post.author_id = current_user.id

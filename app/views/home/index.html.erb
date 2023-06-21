@@ -2,7 +2,8 @@
 
 <% if user_signed_in? %>
 <!-- User is authenticated -->
-  <p>You are logged in as <%= current_user.name %>.</p>
+  <p>You are logged in as <%= current_user.name %> with the email : <%= current_user.email%></p>
+  <p> the current user is <% if current_user.admin? %>an admin <%else%> a user <%end%> </P>
   <!-- Add more content for authenticated users -->
   <div><%= link_to 'Go List of users', users_path %> </div>
  <div> <%= link_to 'Go to Profile', user_path(current_user) %></div>

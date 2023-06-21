@@ -12,6 +12,7 @@ class UsersController < ApplicationController
       sign_out(current_user)
       redirect_to root_path, notice: 'You have been signed out successfully.'
     else
+      @current_user = current_user
       @user = User.find(params[:id])
       @first_three_posts = @user.posts.limit(3)
       @recent_posts = @user.recent_posts

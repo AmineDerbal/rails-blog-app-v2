@@ -18,7 +18,9 @@
       <div class='comments-content'>
         <p><strong>Comments:</strong></p>
         <% post.comments.each do |comment| %>
+        <div class='comment_content'>
           <%= render partial: 'comment', locals: { comment: comment } %>
+          </div>
         <% end %>
       </div>
     </div>
