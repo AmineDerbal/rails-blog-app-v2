@@ -3,22 +3,17 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
+
  <div class="field">
-  <%= f.hidden_field :name, value: 'UNKNOWN' %>
-</div>
-
-<div class="field">
-  <%= f.hidden_field :photo, value: 'UNKNOWN' %>
-</div>
-
-<div class="field">
-  <%= f.hidden_field :bio, value: 'UNKNOWN' %>
-
-</div>
-
-<div class="field">
+  <%= f.hidden_field :photo, value: 'https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=765&q=80' %>
+  <%= f.hidden_field :bio, value: '' %>
+  <%= f.hidden_field :role, value: 'user' %>
   <%= f.hidden_field :posts_counter, value: 0 %>
+ <%= f.label :name %><br />
+<%= f.text_field :name, autofocus: true %>
 </div>
+
+
 
   <div class="field">
     <%= f.label :email %><br />
