@@ -119,12 +119,18 @@ You can deploy this project using:
 
 <!-- AUTHORS -->
 
-## 👥 Author <a name="authors"></a>
+## 👥 Authors <a name="authors"></a>
 
 👤 **Derbal Mohammed El Amine**
 
 - GitHub: [@githubhandle](https://github.com/AmineDerbal)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/mohammed-el-amine-derbal-4038541b6/)
+
+👤 **Faranosh Amini**
+
+- GitHub: [@githubhandle](https://github.com/FaranoshAmini)
+- Twitter: [@twitterhandle](https://twitter.com/Faranosh_Amini)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/faranosh-amini-9b925b23a/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
