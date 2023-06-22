@@ -2,7 +2,6 @@ class Api::CommentsController < ApplicationController
   skip_before_action :authenticate_user!
   protect_from_forgery with: :null_session
 
-
   def index
     post = Post.find(params[:post_id])
     comments = post.comments
@@ -11,8 +10,6 @@ class Api::CommentsController < ApplicationController
 
   def create
     user = User.find_by(api_key: request.headers['X-Api-Key'])
-    puts 'hello'
-    puts "user: #{user.inspect}"
     post = Post.find(params[:post_id])
     comment = post.comments.build(comment_params)
     comment.author_id = user.id
@@ -29,6 +26,4 @@ class Api::CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:text)
   end
-
-
 end
