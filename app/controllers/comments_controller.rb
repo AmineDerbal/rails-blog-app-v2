@@ -1,32 +1,32 @@
-class Api::CommentsController < ApplicationController
-  skip_before_action :authenticate_user!
-  protect_from_forgery with: :null_session
+class CommentsController < ApplicationController
+  layout 'standard'
 
-  def index
-    post = Post.find(params[:post_id])
-    comments = post.comments
-    render json: comments
-  rescue ActiveRecord::RecordNotFound
-    render json: { error: 'Post not found' }, status: :not_found
-  rescue StandardError => e
-    render json: { error: e.message }, status: :unprocessable_entity
+  def new
+    @comment = Comment.new
+    @user = User.find(params[:user_id])
+    @post = Post.find(params[:post_id])
   end
 
   def create
-    user = User.find_by(api_key: request.headers['X-Api-Key'])
-    post = Post.find(params[:post_id])
-    comment = post.comments.build(comment_params)
-    comment.author_id = user.id
-    comment.post_id = post.id
-    if comment.save
-      render json: comment, status: :created
+    @comment = Comment.new(comment_params)
+    @author_id = current_user.id
+    @post_id = params[:post_id]
+    @comment.author_id = @author_id
+    @comment.post_id = @post_id
+
+    if @comment.save
+      redirect_to user_post_path(user_id: @author_id, id: @post_id), notice: 'Commentcreated successfully'
     else
-      render json: { error: comment.errors.full_messages }, status: :unprocessable_entity
+      render 'new'
     end
-  rescue ActiveRecord::RecordNotFound
-    render json: { error: 'Post not found' }, status: :not_found
-  rescue StandardError => e
-    render json: { error: e.message }, status: :unprocessable_entity
+  end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+
+    @comment.destroy
+
+    redirect_to user_post_path(user_id: @comment.author_id, id: @comment.post_id)
   end
 
   private
