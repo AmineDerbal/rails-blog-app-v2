@@ -1,7 +1,7 @@
 class Api::CommentsController < ApplicationController
   skip_before_action :authenticate_user!
   protect_from_forgery with: :null_session
-​
+  ​
   def index
     post = Post.find(params[:post_id])
     comments = post.comments
@@ -11,7 +11,7 @@ class Api::CommentsController < ApplicationController
   rescue StandardError => e
     render json: { error: e.message }, status: :unprocessable_entity
   end
-​
+  ​
   def create
     user = User.find_by(api_key: request.headers['X-Api-Key'])
     post = Post.find(params[:post_id])
@@ -28,9 +28,11 @@ class Api::CommentsController < ApplicationController
   rescue StandardError => e
     render json: { error: e.message }, status: :unprocessable_entity
   end
-​
+  ​
+
   private
-​
+
+  ​
   def comment_params
     params.require(:comment).permit(:text)
   end
