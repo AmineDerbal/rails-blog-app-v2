@@ -22,9 +22,11 @@ class User < ApplicationRecord
   private
 
   def generate_api_key
-    loop do
-      api_key = SecureRandom.urlsafe_base64
-      break api_key unless User.exists?(api_key:)
-    end.tap { |api_key| update(api_key:) }
+    api_key = loop do
+      generated_api_key = SecureRandom.urlsafe_base64
+      break generated_api_key unless User.exists?(api_key: generated_api_key)
+    end
+
+    update(api_key:)
   end
 end
