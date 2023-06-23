@@ -8,11 +8,13 @@ gem 'cancancan'
 
 gem 'rails-controller-testing'
 
-gem 'rspec-rails', '~> 4.0.0.beta2'
+gem 'rspec-rails' 
 
 gem 'rubocop', '>= 1.0', '< 2.0'
 
 gem 'devise'
+
+gem 'rswag'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.5'
@@ -81,3 +83,5 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
+
+
