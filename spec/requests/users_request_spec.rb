@@ -2,6 +2,25 @@ require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
   describe 'GET /index' do
+    let(:user) do
+      User.create(
+        name: 'John',
+        email: 'j@j.com',
+        password: '123456',
+        photo: 'j.jpg',
+        bio: 'bio',
+        posts_counter: 0,
+        api_key: '123456',
+        id: 1
+      )
+    end
+
+    before do
+      allow_any_instance_of(User).to receive(:confirmed?).and_return(true)
+      sign_in user # Sign in the user using Devise
+    end
+
+
     before(:each) do
       get '/users'
     end
@@ -21,6 +40,24 @@ RSpec.describe 'Users', type: :request do
   end
 
   describe 'GET /show' do
+    let(:user) do
+      User.create(
+        name: 'Tom',
+        email: 't@t.com',
+        password: '123456',
+        photo: 'j.jpg',
+        bio: 'bio',
+        posts_counter: 0,
+        api_key: '123456',
+        id: 1
+      )
+    end
+
+    before do
+      allow_any_instance_of(User).to receive(:confirmed?).and_return(true)
+      sign_in user # Sign in the user using Devise
+    end
+
     before(:each) do
       get '/users/1'
     end

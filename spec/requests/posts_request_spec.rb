@@ -2,8 +2,28 @@ require 'rails_helper'
 
 RSpec.describe 'Posts', type: :request do
   describe 'GET /index' do
+    let(:user) do
+      User.create(
+        name: 'John',
+        email: 'j@j.com',
+        password: '123456',
+        photo: 'j.jpg',
+        bio: 'bio',
+        posts_counter: 0,
+        api_key: '123456',
+        id: 1
+      )
+    end
+
+    before do
+      allow_any_instance_of(User).to receive(:confirmed?).and_return(true)
+      sign_in user # Sign in the user using Devise
+    end
+
+
     before(:each) do
-      get '/users/15/posts'
+    
+      get '/users/1/posts'
     end
 
     it 'returns http success' do
@@ -21,8 +41,29 @@ RSpec.describe 'Posts', type: :request do
   end
 
   describe 'GET /show' do
+    let(:user) do
+      User.create(
+        name: 'Tom',
+        email: 't@t.com',
+        password: '123456',
+        photo: 'j.jpg',
+        bio: 'bio',
+        posts_counter: 0,
+        api_key: '123456',
+      )
+    end
+
+    let(:post) do 
+      user.posts.create(title: 'Post 1', text: 'This is post 1', comments_counter: 0, likes_counters: 0)
+    end
+
+    before do
+      allow_any_instance_of(User).to receive(:confirmed?).and_return(true)
+      sign_in user # Sign in the user using Devise
+    end
+
     before(:each) do
-      get '/users/20/posts/1'
+      get "/users/#{user.id}/posts/#{post.id}"
     end
 
     it 'returns http success' do
