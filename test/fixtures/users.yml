@@ -9,7 +9,8 @@ one: {
   name: "John Doe",
   photo: "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y",
   bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  posts_counter: 0
+  posts_counter: 0,
+  email: 'j@j.com'
 }
 # column: value
 #
